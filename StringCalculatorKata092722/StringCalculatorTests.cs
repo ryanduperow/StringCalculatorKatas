@@ -28,4 +28,16 @@ public class StringCalculatorTests
 
         Assert.AreEqual(expected, actual);
     }
+
+    [TestMethod]
+    public void Add_StringNums_ShouldReturn_Sum()
+    {
+        StringCalculator sc = new StringCalculator();
+
+        int expected = 5;
+
+        int actual = sc.Add("2,3");
+
+        Assert.AreEqual(expected, actual);
+    }
 }
