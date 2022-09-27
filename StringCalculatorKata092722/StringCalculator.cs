@@ -9,7 +9,12 @@ public class StringCalculator
 
         if (numbers != string.Empty)
         {
-            result = Int32.Parse(numbers);
+            string[] numbersArray = numbers.Split(",");
+
+            foreach (var num in numbersArray)
+            {
+                result += int.Parse(num);
+            }
         }
 
         return result;
