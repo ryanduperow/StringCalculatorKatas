@@ -5,6 +5,13 @@ public class StringCalculator
 {
     public int Add(string numbers)
     {
-        return 0;
+        int result = 0;
+
+        if (numbers != string.Empty)
+        {
+            result = Int32.Parse(numbers);
+        }
+
+        return result;
     }
 }
