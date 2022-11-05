@@ -87,4 +87,32 @@ public class StringCalculatorTests
 
         Assert.AreEqual(expected, actual);
     }
+
+    // Step 4: Custom Separators
+
+    [TestMethod]
+    public void Add_CustomSeparator_ShouldReturn_Sum()
+    {
+        StringCalculator sc = new StringCalculator();
+
+        int expected = 6;
+
+        int actual = sc.Add("//;\n1\n2;3");
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    [DataTestMethod]
+    [DataRow("//;\n2;3;5,7", 17)]
+    [DataRow("//?\n2,3?57?605", 667)]
+    [DataRow("//$\n0,3$22$33,66$122", 246)]
+    [DataRow("//@\n2@4@7,9,11@22@18", 73)]
+    public void Add_MultCustomSeparator_ShouldReturn_Sum(string input, int expected)
+    {
+        StringCalculator sc = new StringCalculator();
+
+        int actual = sc.Add(input);
+
+        Assert.AreEqual(expected, actual);
+    }
 }
