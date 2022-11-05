@@ -152,4 +152,15 @@ public class StringCalculatorTests
         Assert.AreEqual(expected, actual);
     }
 
+    // Step 7: Arbitrary Length Separators
+
+    [TestMethod]
+    public void Add_ArbitraryLengthSeparatpr_ShouldReturn_Sum()
+    {
+        int expected = 6;
+
+        int actual = sc.Add("//[***]\n1***2***3");
+
+        Assert.AreEqual(expected, actual);
+    }
 }
