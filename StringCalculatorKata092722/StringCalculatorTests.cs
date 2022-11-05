@@ -138,7 +138,7 @@ public class StringCalculatorTests
         }
     }
 
-    // Step 6: Ignore Numbers bigger than 100
+    // Step 6: Ignore Numbers bigger than 1000
 
     [DataTestMethod]
     [DataRow("1000,2,3,5,7", 17)]
