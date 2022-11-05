@@ -16,7 +16,20 @@ public class StringCalculator
         var inputList = FormatList();
         var numbers = inputList.Select(item => ConvertToNum(item)).ToList();
 
+        CheckForNegatives(numbers);
+
         return numbers.Sum() ;
+    }
+
+    private void CheckForNegatives(List<int> numberList)
+    {
+        List<int> negativeList = numberList.Where(num => num < 0).ToList();
+
+        if (negativeList.Count > 0)
+        {
+            throw new ArgumentException(
+                $"Negatives not allowed: {string.Join(" ", negativeList)}");
+        }
     }
 
     private int ConvertToNum(string item)

@@ -5,14 +5,13 @@ namespace StringCalculatorKata092722;
 [TestClass]
 public class StringCalculatorTests
 {
+    private StringCalculator sc = new StringCalculator();
 
     // Step 1: Simple Calculator
 
     [TestMethod]
     public void Add_EmptyString_ShouldReturn_Zero()
     {
-        StringCalculator sc = new StringCalculator();
-
         int expected = 0;
 
         int actual = sc.Add("");
@@ -23,8 +22,6 @@ public class StringCalculatorTests
     [TestMethod]
     public void Add_StringNum_ShouldReturn_Num()
     {
-        StringCalculator sc = new StringCalculator();
-
         int expected = 4;
 
         int actual = sc.Add("4");
@@ -37,8 +34,6 @@ public class StringCalculatorTests
     [TestMethod]
     public void Add_StringNums_ShouldReturn_Sum()
     {
-        StringCalculator sc = new StringCalculator();
-
         int expected = 5;
 
         int actual = sc.Add("2,3");
@@ -53,8 +48,6 @@ public class StringCalculatorTests
     [DataRow("2,4,7,9,11,22,18", 73)]
     public void Add_UnknownAmountOfNums_ShouldReturn_Sum(string input, int expected)
     {
-        StringCalculator sc = new StringCalculator();
-
         int actual = sc.Add(input);
 
         Assert.AreEqual(expected, actual);
@@ -65,8 +58,6 @@ public class StringCalculatorTests
     [TestMethod]
     public void Add_NewlineSeparator_ShouldReturn_Sum()
     {
-        StringCalculator sc = new StringCalculator();
-
         int expected = 6;
 
         int actual = sc.Add("1\n2,3");
@@ -81,8 +72,6 @@ public class StringCalculatorTests
     [DataRow("2,4\n7,9\n11,22\n18", 73)]
     public void Add_MultNewLineSeparator_ShouldReturn_Sum(string input, int expected)
     {
-        StringCalculator sc = new StringCalculator();
-
         int actual = sc.Add(input);
 
         Assert.AreEqual(expected, actual);
@@ -93,8 +82,6 @@ public class StringCalculatorTests
     [TestMethod]
     public void Add_CustomSeparator_ShouldReturn_Sum()
     {
-        StringCalculator sc = new StringCalculator();
-
         int expected = 6;
 
         int actual = sc.Add("//;\n1\n2;3");
@@ -109,10 +96,48 @@ public class StringCalculatorTests
     [DataRow("//@\n2@4@7,9,11@22@18", 73)]
     public void Add_MultCustomSeparator_ShouldReturn_Sum(string input, int expected)
     {
-        StringCalculator sc = new StringCalculator();
-
         int actual = sc.Add(input);
 
         Assert.AreEqual(expected, actual);
     }
+
+    // Step 5: Disallow Negatives
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void Add_NegativeNumber_ThrowsArgumentException()
+    {
+        sc.Add("-5");
+    }
+
+    [TestMethod]
+    public void Add_NegativeNumber_ErrorMessageContainsNumber()
+    {
+        try
+        {
+            sc.Add("-5");
+            Assert.Fail();
+        }
+        catch (ArgumentException e)
+        {
+            Assert.AreEqual("Negatives not allowed: -5", e.Message);
+        }
+    }
+
+    [TestMethod]
+    public void Add_MultNegativeNumber_ErrorMessageContainsNumber()
+    {
+        try
+        {
+            sc.Add("-5,3,-2,-10,22");
+            Assert.Fail();
+        }
+        catch (ArgumentException e)
+        {
+            Assert.AreEqual("Negatives not allowed: -5 -2 -10", e.Message);
+        }
+    }
+
+
+
 }
