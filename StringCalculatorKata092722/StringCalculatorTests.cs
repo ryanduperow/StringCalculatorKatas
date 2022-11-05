@@ -138,6 +138,18 @@ public class StringCalculatorTests
         }
     }
 
+    // Step 6: Ignore Numbers bigger than 100
 
+    [DataTestMethod]
+    [DataRow("1000,2,3,5,7", 17)]
+    [DataRow("2,3000,57,605", 664)]
+    [DataRow("0,3,2200,33,66,1220", 102)]
+    [DataRow("2000,4,7,999,11,22,1800", 1043)]
+    public void Add_NumsGreaterThan1000_ShouldBeIgnored(string input, int expected)
+    {
+        int actual = sc.Add(input);
+
+        Assert.AreEqual(expected, actual);
+    }
 
 }

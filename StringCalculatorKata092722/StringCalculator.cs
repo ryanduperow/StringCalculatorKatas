@@ -14,7 +14,9 @@ public class StringCalculator
             return 0;
 
         var inputList = FormatList();
-        var numbers = inputList.Select(item => ConvertToNum(item)).ToList();
+        var numbers = inputList.Select(item => ConvertToNum(item))
+                               .Where(item => item < 1000)
+                               .ToList();
 
         CheckForNegatives(numbers);
 
