@@ -5,6 +5,9 @@ namespace StringCalculatorKata092722;
 [TestClass]
 public class StringCalculatorTests
 {
+
+    // Step 1: Simple Calculator
+
     [TestMethod]
     public void Add_EmptyString_ShouldReturn_Zero()
     {
@@ -28,6 +31,8 @@ public class StringCalculatorTests
 
         Assert.AreEqual(expected, actual);
     }
+
+    // Step 2: Arbitrary Number Size
 
     [TestMethod]
     public void Add_StringNums_ShouldReturn_Sum()
@@ -54,4 +59,7 @@ public class StringCalculatorTests
 
         Assert.AreEqual(expected, actual);
     }
+
+    // Step 3: Newline Separator
+
 }

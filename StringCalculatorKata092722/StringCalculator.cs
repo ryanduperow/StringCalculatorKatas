@@ -3,20 +3,23 @@ namespace StringCalculatorKata092722;
 
 public class StringCalculator
 {
-    public int Add(string numbers)
+    private string _input = string.Empty;
+
+    public int Add(string input)
     {
-        int result = 0;
+        _input = input;
 
-        if (numbers != string.Empty)
-        {
-            string[] numbersArray = numbers.Split(",");
+        if (string.IsNullOrEmpty(_input))
+            return 0;
 
-            foreach (var num in numbersArray)
-            {
-                result += int.Parse(num);
-            }
-        }
+        var inputList = _input.Split(",").ToList();
+        var numbers = inputList.Select(item => ConvertToNum(item)).ToList();
 
-        return result;
+        return numbers.Sum() ;
+    }
+
+    private int ConvertToNum(string item)
+    {
+        return int.Parse(item);
     }
 }
