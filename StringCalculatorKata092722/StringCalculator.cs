@@ -4,6 +4,7 @@ namespace StringCalculatorKata092722;
 public class StringCalculator
 {
     private string _input = string.Empty;
+    private List<char> separatorsList = new List<char> { ',', '\n' };
 
     public int Add(string input)
     {
@@ -12,7 +13,7 @@ public class StringCalculator
         if (string.IsNullOrEmpty(_input))
             return 0;
 
-        var inputList = _input.Split(",").ToList();
+        var inputList = _input.Split(separatorsList.ToArray()).ToList();
         var numbers = inputList.Select(item => ConvertToNum(item)).ToList();
 
         return numbers.Sum() ;
