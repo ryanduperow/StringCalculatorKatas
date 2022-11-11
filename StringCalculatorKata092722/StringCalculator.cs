@@ -14,13 +14,21 @@ public class StringCalculator
             return 0;
 
         var inputList = FormatList();
-        var numbers = inputList.Select(item => ConvertToNum(item))
-                               .Where(item => item < 1000)
-                               .ToList();
 
-        CheckForNegatives(numbers);
+        var numbers = CleanNumbers(inputList);
 
         return numbers.Sum() ;
+    }
+
+    private List<int> CleanNumbers(List<string> list)
+    {
+        var result = list.Select(item => ConvertToNum(item))
+                         .Where(item => item < 1000)
+                         .ToList();
+
+        CheckForNegatives(result);
+
+        return result;
     }
 
     private void CheckForNegatives(List<int> numberList)
