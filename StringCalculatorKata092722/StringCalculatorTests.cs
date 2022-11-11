@@ -155,7 +155,7 @@ public class StringCalculatorTests
     // Step 7: Arbitrary Length Separators
 
     [TestMethod]
-    public void Add_ArbitraryLengthSeparatpr_ShouldReturn_Sum()
+    public void Add_ArbitraryLengthSeparator_ShouldReturn_Sum()
     {
         int expected = 6;
 

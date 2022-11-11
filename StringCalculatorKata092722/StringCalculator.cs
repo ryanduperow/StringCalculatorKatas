@@ -4,7 +4,7 @@ namespace StringCalculatorKata092722;
 public class StringCalculator
 {
     private string _input = string.Empty;
-    private List<char> separatorsList = new List<char> { ',', '\n' };
+    private List<string> separatorsList = new List<string> { ",", "\n", "//", "[", "]" };
 
     public int Add(string input)
     {
@@ -47,12 +47,28 @@ public class StringCalculator
         {
             if (HasCustomIndicator())
             {
-                separatorsList.Add(_input[2]);
-                _input = _input.Substring(4);
+                string customSection = _input.Split("\n").First();
+
+                List<string> customSeparators = customSection.Split(
+                    separatorsList.ToArray(), 
+                    StringSplitOptions.RemoveEmptyEntries)
+                    .ToList();
+
+                foreach (string separator in customSeparators)
+                {
+                    separatorsList.Add(separator);
+                }
+
+                _input = _input.Substring(
+                    customSection.Length, 
+                    _input.Length - customSection.Length);
             }      
         }
        
-        list = _input.Split(separatorsList.ToArray()).ToList();
+        list = _input.Split(
+            separatorsList.ToArray(),
+            StringSplitOptions.RemoveEmptyEntries)
+            .ToList();
 
         return list;
     }
