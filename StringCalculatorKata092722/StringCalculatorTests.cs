@@ -163,4 +163,28 @@ public class StringCalculatorTests
 
         Assert.AreEqual(expected, actual);
     }
+
+    // Step 8: Multiple Single Char Custom Separators
+
+    [TestMethod]
+    public void Add_MultiCustomSingleLengthSeparator_ShouldReturn_Sum()
+    {
+        int expected = 6;
+
+        int actual = sc.Add("//[$][!]\n1$2!3");
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    // Step 9: Multiple Arbitrary Length Custom Separators
+
+    [TestMethod]
+    public void Add_MultiCustomArbitraryLengthSeparator_ShouldReturn_Sum()
+    {
+        int expected = 6;
+
+        int actual = sc.Add("//[foo][bar]\n1foo2bar3");
+
+        Assert.AreEqual(expected, actual);
+    }
 }

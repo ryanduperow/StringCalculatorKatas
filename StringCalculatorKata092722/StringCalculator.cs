@@ -62,10 +62,7 @@ public class StringCalculator
                     StringSplitOptions.RemoveEmptyEntries)
                     .ToList();
 
-                foreach (string separator in customSeparators)
-                {
-                    separatorsList.Add(separator);
-                }
+                customSeparators.ForEach(separator => separatorsList.Add(separator));
 
                 _input = _input.Substring(
                     customSection.Length, 
