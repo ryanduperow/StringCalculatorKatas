@@ -23,7 +23,18 @@ public static class CalculatorHelper
 
     public static List<int> CleanNumberList(List<string> inputList)
     {
-        return inputList.Select(input => int.Parse(input))
+        List<int> cleanedList = inputList.Select(input => int.Parse(input))
                         .ToList();
+
+        List<int> negativesList = cleanedList.Where(num => num < 0)
+                                             .ToList();
+
+        if (negativesList.Count() > 0)
+        {
+            throw new ArgumentException(
+                $"Negatives not allowed: {string.Join(" ", negativesList)}");
+        }
+
+        return cleanedList;
     }
 }

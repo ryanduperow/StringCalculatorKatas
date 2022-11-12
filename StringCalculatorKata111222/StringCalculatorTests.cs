@@ -72,4 +72,25 @@ public class StringCalculatorTests
 
         Assert.AreEqual(expected, actual);
     }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void Add_NegativeNumber_ThrowsArgumentException()
+    {
+        _sut.Add("-5");
+    }
+
+    [TestMethod]
+    public void Add_MultNegativeNumber_ErrorMessageContainsNumber()
+    {
+        try
+        {
+            _sut.Add("-5,3,-2,-10,22");
+            Assert.Fail();
+        }
+        catch (ArgumentException e)
+        {
+            Assert.AreEqual("Negatives not allowed: -5 -2 -10", e.Message);
+        }
+    }
 }
