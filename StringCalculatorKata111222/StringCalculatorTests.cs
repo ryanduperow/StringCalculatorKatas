@@ -93,4 +93,14 @@ public class StringCalculatorTests
             Assert.AreEqual("Negatives not allowed: -5 -2 -10", e.Message);
         }
     }
+
+    [TestMethod]
+    public void Add_NumbersOver1000_ShouldBeIgnored()
+    {
+        int expected = 1026;
+
+        int actual = _sut.Add("1000,5,2,2200,3,7,9");
+
+        Assert.AreEqual(expected, actual);
+    }
 }
