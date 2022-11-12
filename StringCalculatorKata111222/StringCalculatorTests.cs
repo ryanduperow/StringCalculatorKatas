@@ -34,4 +34,14 @@ public class StringCalculatorTests
 
         Assert.AreEqual(expected, actual);
     }
+
+    [TestMethod]
+    public void Add_ArbitraryLengthNumList_ShouldReturn_Sum()
+    {
+        int expected = 26;
+
+        int actual = StringCalculator.Add("5,2,3,7,9");
+
+        Assert.AreEqual(expected, actual);
+    }
 }

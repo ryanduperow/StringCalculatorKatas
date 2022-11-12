@@ -13,10 +13,12 @@ public static class StringCalculator
         if(string.IsNullOrEmpty(_input))
             return 0;
 
-        List<string> inputList = _input.Split(",").ToList();
+        List<string> inputList = _input.Split(",")
+                                       .ToList();
 
-        return inputList.Count == 2 ?
-            int.Parse(inputList[0]) + int.Parse(inputList[1]) :
-            int.Parse(inputList[0]);
+        List<int> numberList = inputList.Select(input => int.Parse(input))
+                                        .ToList();
+
+        return numberList.Sum();
     }
 }
