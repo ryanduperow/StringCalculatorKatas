@@ -1,23 +1,20 @@
 ﻿
-
 namespace StringCalculatorKata111222;
 
-public static class StringCalculator
+public class StringCalculator
 {
-    private static string _input = string.Empty;
+    private string _input = string.Empty;
 
-    public static int Add(string input)
+    public int Add(string input)
     {
         _input = input;
 
         if(string.IsNullOrEmpty(_input))
             return 0;
 
-        List<string> inputList = _input.Split(",")
-                                       .ToList();
+        List<string> inputList = CalculatorHelper.FormatInput(_input);
 
-        List<int> numberList = inputList.Select(input => int.Parse(input))
-                                        .ToList();
+        List<int> numberList = CalculatorHelper.CleanNumberList(inputList);
 
         return numberList.Sum();
     }
