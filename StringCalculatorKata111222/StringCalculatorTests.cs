@@ -103,4 +103,34 @@ public class StringCalculatorTests
 
         Assert.AreEqual(expected, actual);
     }
+
+    [TestMethod]
+    public void Add_ArbitraryLengthCustomSeparator_ShouldReturnSum()
+    {
+        int expected = 6;
+
+        int actual = _sut.Add("//[***]\n1***2***3");
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void AddMultipleCustomSeparators_ShouldReturnSum()
+    {
+        int expected = 6;
+
+        int actual = _sut.Add("//[$][%]\n1$2%3");
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void Add_MultipleArbitraryLengthCustomSeparators_ShouldReturnSum()
+    {
+        int expected = 6;
+
+        int actual = _sut.Add("//[foo][bar]\n1foo2bar3");
+
+        Assert.AreEqual(expected, actual);
+    }
 }

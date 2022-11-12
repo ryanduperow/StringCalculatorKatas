@@ -13,8 +13,12 @@ public static class CalculatorHelper
         {
             if (input.Substring(0, 2) == CUSTOM_INDICATOR)
             {
-                _separatorsList.Add(input[2].ToString());
-                input = input.Substring(4);
+                string customSection = input.Split("\n").First();
+                string[] customSectionSeparators = { CUSTOM_INDICATOR, "]", "[" };
+                List<string> separatorsToAdd = customSection.Split(customSectionSeparators, StringSplitOptions.RemoveEmptyEntries)
+                                                            .ToList();
+                separatorsToAdd.ForEach(separator => _separatorsList.Add(separator));
+                input = input.Substring(customSection.Length, input.Length - customSection.Length);
             }
         }
 
